@@ -1,9 +1,9 @@
 # STIG-Remediation-WN11-CC-000025
 
-# SYNOPSIS
+# Synopsis
     This PowerShell script ensures the system is configured to prevent IPv4 source routing (highest protection level).
 
-# NOTES
+# Notes
     Author          : Jason Moore
     LinkedIn        : linkedin.com/in/jasonmoore-infosec
     GitHub          : github.com/jasonmoore.io
@@ -15,22 +15,18 @@
     STIG-ID         : WN11-CC-000025
     Documentation   : https://stigaview.com/products/win11/v2r8/WN11-CC-000025/
 
-# TESTED ON
+# Tested On
     Date(s) Tested  : 2026-08-29
     Tested By       : Tenable Nessus Vulnerability Management
     Systems Tested  : Windows 11
     PowerShell Ver. : Build 26100; Revision 9168
 
-# USAGE
+# Usage
     Run this script in an elevated (Administrator) PowerShell session on the
     target Windows 11 workstation. It creates the DisableIPSourceRouting
     DWORD under Tcpip\Parameters, sets it to 2, then prints the confirmation
     output, a PASS/FAIL check, and a reg.exe query so you can capture
-    evidence for the STIG checklist. No parameters are required.
-
-#>
-
-# 
+    evidence for the STIG checklist. No parameters are required. 
 
 # Remediation
 New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Force | Out-Null
@@ -44,8 +40,8 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" `
   -Name "DisableIPSourceRouting"
 
-# You want to see:
-# DisableIPSourceRouting : 2
+You want to see:
+DisableIPSourceRouting : 2
 
 # Disable
 Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" `
@@ -70,5 +66,5 @@ if ($Value -eq 2) {
 # reg.exe confirmation
 reg query "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v DisableIPSourceRouting
 
-# Expected result:
-# DisableIPSourceRouting    REG_DWORD    0x2
+Expected result:
+DisableIPSourceRouting    REG_DWORD    0x2
