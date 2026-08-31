@@ -8,7 +8,7 @@
     LinkedIn        : linkedin.com/in/jasonmoore-infosec
     GitHub          : github.com/jasonmoore.io
     Date Created    : 2026-08-26
-    Last Modified   : 2026-08-26
+    Last Modified   : 2026-08-29
     Version         : 1.0
     CVEs            : N/A
     Plugin IDs      : 19506
